@@ -1,0 +1,22 @@
+# @author : microfat
+# @time   : 03/27/21 13:57:04
+# @File   : docker-compose.yml
+
+version: "3.8"
+services: 
+    nginx_testing:
+        image: nginx_testing:1.0
+        container_name: nginx_testing_1.0
+        build: .
+        ports: 
+            - 8964:8964
+        volumes:
+            - logs:/vol
+            - ./:/app
+        privileged: true
+        sysctls:
+            net.core.somaxconn: '500'
+        restart: always
+
+volumes: 
+    logs:
